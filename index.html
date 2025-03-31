@@ -4,8 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>iGaming Bullshit Generator</title>
+  <meta name="description" content="Generate cutting-edge, end-to-end, ROI-boosting, retention-maximizing iGaming buzzword sentences for your next sales deck or LinkedIn post." />
+  <meta name="keywords" content="iGaming, Affiliate Marketing, Buzzwords, Generator, SaaS, Gamification, Affiliate Tools, Crypto Casinos, Marketing BS" />
+  <meta name="author" content="Joe Hatch" />
+  <meta property="og:title" content="iGaming Bullshit Generator" />
+  <meta property="og:description" content="Generate jargon-packed sentences for iGaming, affiliate, and B2B sales content. Just for fun." />
+  <meta property="og:url" content="https://igamingbullshitgenerator.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://igamingbullshitgenerator.com/social-preview.png" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <script defer src="script.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col justify-center items-center p-4">
   <h1 class="text-4xl font-bold mb-4 text-center">🎰 iGaming Bullshit Generator</h1>
@@ -15,12 +25,17 @@
     <p id="bs-output" class="text-xl font-semibold italic">Click below to generate some BS...</p>
   </div>
 
-  <button onclick="generateBullshit()" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200">
-    🔁 Generate Bullshit
-  </button>
+  <div class="flex flex-wrap justify-center gap-4 mt-6">
+    <button onclick="generateBullshit()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200">
+      🔁 Generate Bullshit
+    </button>
+  </div>
 
   <footer class="mt-12 text-sm text-gray-500 text-center">
-    Built for fun by <a class="underline hover:text-white" href="https://joehat.ch" target="_blank">Joe Hatch</a>
+    Built for fun by 
+    <a class="underline hover:text-white" href="https://joehat.ch/" target="_blank">Joe Hatch</a> · 
+    <a class="underline hover:text-white" href="https://www.linkedin.com/in/joehatch/" target="_blank">Follow me on LinkedIn</a> · 
+    <a class="underline hover:text-white" href="https://github.com/JoeHatch/igaming-bullshit-generator">GitHub Repo</a>
   </footer>
 </body>
 </html>
