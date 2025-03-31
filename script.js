@@ -31,10 +31,16 @@ function generateBullshit() {
   const phrase = `${v} your ${a} ${n} ${e}.`;
   document.getElementById("bs-output").innerText = phrase;
 
-  // Launch confetti!
+  // Launch confetti
   confetti({
     particleCount: 100,
     spread: 70,
     origin: { y: 0.6 }
+  });
+
+  // Track custom GA4 event
+  gtag('event', 'generate_click', {
+    event_category: 'interaction',
+    event_label: phrase
   });
 }
