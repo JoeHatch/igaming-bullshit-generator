@@ -28,5 +28,13 @@ function generateBullshit() {
   const n = nouns[Math.floor(Math.random() * nouns.length)];
   const e = endings[Math.floor(Math.random() * endings.length)];
 
-  document.getElementById("bs-output").innerText = `${v} your ${a} ${n} ${e}.`;
+  const phrase = `${v} your ${a} ${n} ${e}.`;
+  document.getElementById("bs-output").innerText = phrase;
+
+  // Launch confetti!
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
 }
