@@ -1,54 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TG15JC3BWR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-TG15JC3BWR');
-  </script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>iGaming Bullshit Generator</title>
   <meta name="description" content="Generate cutting-edge, ROI-boosting, retention-maximizing iGaming buzzword sentences for your next sales deck or LinkedIn post." />
-  <meta name="keywords" content="iGaming, Affiliate Marketing, Buzzwords, Generator, SaaS, Gamification" />
-  <meta name="author" content="Joe Hatch" />
   <meta property="og:title" content="iGaming Bullshit Generator" />
   <meta property="og:description" content="Generate jargon-packed sentences for iGaming, affiliate, and B2B sales content. Just for fun." />
   <meta property="og:url" content="https://igamingbullshitgenerator.com" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://igamingbullshitgenerator.com/social-preview.png" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <!-- Script -->
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMIvBZEX2Dc49wkQNeCff6IBEinHMQuRI",
+      authDomain: "igaming-bullshit-generator.firebaseapp.com",
+      databaseURL: "https://igaming-bullshit-generator-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "igaming-bullshit-generator",
+      storageBucket: "igaming-bullshit-generator.firebasestorage.app",
+      messagingSenderId: "343818204294",
+      appId: "1:343818204294:web:b088f9d732ad934a2e0d07",
+      measurementId: "G-0NKKDD2YH7"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+
   <script defer src="script.js"></script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col justify-center items-center p-4">
-  <h1 class="text-4xl font-bold mb-4 text-center">🎰 iGaming Bullshit Generator</h1>
-  <p class="text-center text-gray-300 max-w-xl mb-8">Generate cutting-edge, ROI-boosting, retention-maximizing jargon for your next sales deck or LinkedIn post.</p>
+  <h1 class="text-4xl font-bold mb-2 text-center">🎰 iGaming Bullshit Generator</h1>
+  <p class="text-center text-gray-300 max-w-xl mb-6">Generate cutting-edge, ROI-boosting, retention-maximizing jargon for your next sales deck or LinkedIn post.</p>
 
   <div class="bg-gray-800 p-6 rounded-2xl shadow-xl max-w-2xl w-full text-center">
     <div class="flex items-center justify-center gap-4 text-xl font-semibold italic text-white relative">
       <div class="relative flex items-center gap-2">
-        <button 
-          onclick="copyBullshit()" 
-          id="copy-btn"
-          title="Copy to clipboard" 
-          class="text-white hover:text-green-400 transition text-2xl"
-          aria-label="Copy"
-        >
+        <button onclick="copyBullshit()" id="copy-btn" class="text-white hover:text-green-400 transition text-2xl" title="Copy to clipboard">
           <i id="copy-icon" class="fa-regular fa-clipboard"></i>
         </button>
         <span id="copy-text" class="text-green-400 text-sm font-medium opacity-0 translate-y-1 transition-all duration-300 ease-out">
@@ -59,13 +53,40 @@
     </div>
   </div>
 
-  <div class="flex flex-wrap justify-center gap-4 mt-6">
+  <div class="flex flex-wrap justify-center gap-4 mt-6 mb-12">
     <button onclick="generateBullshit()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition">
       🔁 Generate Bullshit
     </button>
   </div>
 
-  <footer class="mt-12 text-sm text-gray-500 text-center">
+  <hr class="w-full max-w-2xl border-gray-700 mb-6" />
+
+  <section class="bg-gray-800 text-white rounded-xl p-6 max-w-2xl w-full text-center mb-6 shadow-lg">
+    <p class="text-sm text-gray-400 uppercase tracking-widest mb-4">Live Bullshit Stats</p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+      <div>
+        <p class="text-3xl font-bold text-blue-400" id="today-count">--</p>
+        <p class="text-sm text-gray-400 mt-1">Generated Today</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-green-400" id="total-count">--</p>
+        <p class="text-sm text-gray-400 mt-1">Total Generated</p>
+      </div>
+      <div>
+        <p class="text-xl font-semibold text-yellow-400" id="popular-buzzword">Loading...</p>
+        <p class="text-sm text-gray-400 mt-1">Most Popular Word</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mt-4 max-w-2xl text-center text-sm text-gray-300">
+    <p>
+      P.S. If you're an affiliate looking for a <span class="text-green-400 font-medium">NO BULLSHIT</span> stats tool, check out 
+      <a href="https://statsdrone.com" target="_blank" class="underline hover:text-white">statsdrone.com</a>.
+    </p>
+  </div>
+
+  <footer class="mt-6 text-sm text-gray-500 text-center">
     Built for fun by 
     <a class="underline hover:text-white" href="https://joehat.ch/" target="_blank">Joe Hatch</a> · 
     <a class="underline hover:text-white" href="https://www.linkedin.com/in/joehatch/" target="_blank">Follow me on LinkedIn</a>
