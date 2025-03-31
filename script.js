@@ -31,16 +31,44 @@ function generateBullshit() {
   const phrase = `${v} your ${a} ${n} ${e}.`;
   document.getElementById("bs-output").innerText = phrase;
 
-  // Launch confetti
   confetti({
     particleCount: 100,
     spread: 70,
-    origin: { y: 0.6 }
+    origin: { y: 0.6 },
+    scalar: 1.2
   });
 
-  // Track custom GA4 event
-  gtag('event', 'generate_click', {
-    event_category: 'interaction',
-    event_label: phrase
+  if (typeof gtag === 'function') {
+    gtag('event', 'generate_click', {
+      event_category: 'interaction',
+      event_label: phrase
+    });
+  }
+}
+
+function copyBullshit() {
+  const text = document.getElementById("bs-output").innerText;
+  const icon = document.getElementById("copy-icon");
+  const copyText = document.getElementById("copy-text");
+
+  navigator.clipboard.writeText(text).then(() => {
+    // Switch to check icon + show "Copied"
+    icon.classList.remove("fa-clipboard", "fa-regular");
+    icon.classList.add("fa-check", "fa-solid");
+
+    copyText.classList.remove("opacity-0", "translate-y-1");
+    copyText.classList.add("opacity-100", "translate-y-0");
+
+    // Revert after 1.5s
+    setTimeout(() => {
+      icon.classList.remove("fa-check", "fa-solid");
+      icon.classList.add("fa-clipboard", "fa-regular");
+
+      copyText.classList.add("opacity-0", "translate-y-1");
+      copyText.classList.remove("opacity-100", "translate-y-0");
+    }, 1500);
+  }).catch(err => {
+    alert("Copy failed");
+    console.error(err);
   });
 }
